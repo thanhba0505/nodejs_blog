@@ -1,9 +1,27 @@
 @import 'variables';
 
+a {
+  text-decoration: none;
+}
+
 .cart-courses-item {
   margin-bottom: 20px;
 }
 
-h1 {
-  color: red;
+.cart-text-course {
+  height: 100px;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Số dòng tối đa */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-title-course {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Số dòng tối đa */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
