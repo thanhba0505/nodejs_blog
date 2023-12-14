@@ -19,13 +19,13 @@ class CourseController {
 
   // POST /courses/store
   store(req, res, next) {
-    const formData = {...req.body};
+    const formData = { ...req.body };
     formData.image = `https://img.youtube.com/vi/${req.body.videoID}/sddefault.jpg`;
     const course = new Course(formData);
     course
       .save()
       .then(() => res.redirect('/me/stored/courses'))
-      .catch((error) => {});
+      .catch((error) => { });
   }
 
   // GET /courses/:id/edit
@@ -65,6 +65,19 @@ class CourseController {
     Course.restore({ _id: req.params.id })
       .then(() => res.redirect('back'))
       .catch(next);
+  }
+
+  // POST /courses/handle-form-actions
+  handleFormActions(req, res, next) {
+    switch (req.body.action) {
+      case 'delete':
+        Course.delete({ _id: {$in: req.body.coursesID} })
+          .then(() => res.redirect('back'))
+          .catch(next);
+        break;
+      default:
+        res.json({ message: 'Invalid action'});
+    }
   }
 }
 
